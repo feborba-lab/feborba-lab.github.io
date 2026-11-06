@@ -29,7 +29,7 @@ window.DADOS = {
     frentes: [
       {
         nome: 'Implantação de CRM e CPQ', selo: 'exp',
-        texto: 'Mais de 50 projetos B2B, do discovery ao go-live: requisitos, desenho da solução, parametrização, treinamento e adoção.',
+        texto: 'Mais de 100 projetos B2B, do discovery ao go-live: requisitos, desenho da solução, parametrização, treinamento e adoção.',
         prova: 'Ver o método', acao: 'ir:metodo'
       },
       {
@@ -238,7 +238,7 @@ window.DADOS = {
       'heroi.falar': 'Get in touch',
       'num.implantacoes': 'CRM and CPQ implementations',
       'num.ciclo': 'Average time to go-live',
-      'num.meses': '~<span data-conta="3">3</span> months',
+      'num.meses': '~<span data-conta="3">3</span> weeks',
       'num.primeiro': 'First Ploomes project',
       'fluxo.label': 'Demo of an automation flow',
       'fluxo.nome': 'flow · deal-won → project',
@@ -304,6 +304,7 @@ window.DADOS = {
       'contato.email': 'email',
       'contato.copiar': 'Copy',
       'contato.abrir': 'Open',
+      'contato.conversar': 'Message',
       'rodape': 'Built with plain HTML, CSS and JavaScript, no framework, with help from AI. Press <kbd>Ctrl</kbd> <kbd>K</kbd> to navigate.',
       'paleta.label': 'Command palette',
       'paleta.busca': 'Where do you want to go?',
@@ -314,7 +315,7 @@ window.DADOS = {
     frentes: [
       {
         nome: 'CRM & CPQ implementation', selo: 'exp',
-        texto: '50+ B2B projects from discovery to go-live: requirements, solution design, configuration, training and adoption.',
+        texto: '100+ B2B projects from discovery to go-live: requirements, solution design, configuration, training and adoption.',
         prova: 'See the method', acao: 'ir:metodo'
       },
       {
