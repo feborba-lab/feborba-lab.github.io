@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <!--
+    AULA 1 · O <head>
+    Tudo aqui dentro é "metadado": informação para o navegador, para o Google
+    e para quem compartilha o link. Nada disso aparece na página em si.
+  -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Fernando Borba · CRM, RevOps e automação com IA</title>
+  <meta name="claude:viewport-fit-sides" content="cover">
+  <meta name="description" content="Implantação de CRM e CPQ, RevOps e automação com IA. Mais de 50 implantações B2B e projetos que rodam no navegador: um fluxo com IA para o discovery e consultas SQL sobre um pipeline fictício.">
+  <!-- Open Graph: é o que o LinkedIn e o WhatsApp mostram quando alguém cola o link -->
+  <meta property="og:title" content="Fernando Borba · CRM, RevOps e automação com IA">
+  <meta property="og:description" content="Mais de 50 implantações de CRM e CPQ em empresas B2B, automação com n8n e API REST, e projetos de IA e SQL que rodam no navegador.">
+  <meta property="og:type" content="website">
+
+  <!-- Fontes do Google Fonts. "preconnect" abre a conexão antes, para carregar mais rápido -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <!--
+    AULA 8 · Dois idiomas
+    Todo texto fixo tem um atributo data-t="chave". O português fica aqui no
+    HTML; o inglês fica em js/dados.js. O js/i18n.js troca um pelo outro.
+    Se o JavaScript falhar, a página continua inteira, em português.
+  -->
+
+  <!-- Link escondido que aparece ao apertar Tab: acessibilidade para quem navega pelo teclado -->
+  <a class="pular" href="#conteudo" data-t="pular">Pular para o conteúdo</a>
+
+  <!-- ============ CABEÇALHO ============ -->
+  <header class="topo">
+    <div class="topo__dentro">
+      <a class="marca" href="#inicio" aria-label="Início" data-t-label="marca">
+        <span class="marca__ponto" aria-hidden="true"></span>
+        Fernando Borba
+      </a>
+      <nav class="menu" aria-label="Seções" data-t-label="menu">
+        <a href="#frentes" data-t="menu.frentes">O que eu faço</a>
+        <a href="#projeto" data-t="menu.projetos">Projetos</a>
+        <a href="#metodo" data-t="menu.metodo">Método</a>
+        <a href="#trajetoria" data-t="menu.trajetoria">Trajetória</a>
+        <a href="#contato" data-t="menu.contato">Contato</a>
+      </nav>
+      <div class="topo__acoes">
+        <!-- Botão de idioma: aria-pressed diz qual está ativo -->
+        <div class="lingua" role="group" aria-label="Idioma" data-t-label="lingua">
+          <button type="button" data-lingua="pt" lang="pt-BR" aria-pressed="true" title="Ver em português">PT</button>
+          <button type="button" data-lingua="en" lang="en" aria-pressed="false" title="View in English">EN</button>
+        </div>
+        <button class="botao-icone" id="abrir-paleta" type="button" aria-label="Abrir menu e comandos" data-t-label="paleta.abrir">
+          <span class="so-largo"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+          <svg class="so-estreito" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+        </button>
+        <button class="botao-icone" id="trocar-tema" type="button" aria-label="Trocar tema claro ou escuro" data-t-label="tema">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ============ HERÓI ============
+         O primeiro bloco precisa dizer QUEM é e O QUE faz em 5 segundos.
+         À direita fica um "editor de fluxo" que dá para arrastar e executar. -->
+    <section class="heroi" id="inicio">
+      <div class="heroi__texto">
+        <p class="rotulo"><span class="led" aria-hidden="true"></span> Fernando Borba · São Paulo</p>
+        <h1 class="heroi__titulo">
+          CRM, RevOps
+          <span class="destaque" data-t="heroi.destaque">e automação com IA</span>
+        </h1>
+        <p class="heroi__lead" data-t="heroi.lead">
+          Do discovery ao go-live, em empresas B2B.
+          Processo comercial, automação e integrações com n8n e API REST.
+        </p>
+        <div class="heroi__botoes">
+          <a class="botao botao--cheio" href="#projeto" data-t="heroi.ver">Ver os projetos</a>
+          <a class="botao" href="#contato" data-t="heroi.falar">Falar comigo</a>
+        </div>
+        <dl class="numeros">
+          <div><dt data-t="num.implantacoes">Implantações de CRM e CPQ</dt><dd><span data-conta="50">50</span>+</dd></div>
+          <div><dt data-t="num.ciclo">Ciclo médio até o go-live</dt><dd data-t="num.meses">~<span data-conta="3">3</span> meses</dd></div>
+          <div><dt data-t="num.primeiro">Primeiro projeto Ploomes</dt><dd><span data-conta="2024">2024</span></dd></div>
+        </dl>
+      </div>
+
+      <!-- O editor de fluxo. O JavaScript (js/fluxo.js) desenha os fios e anima os dados. -->
+      <figure class="editor" aria-label="Demonstração de um fluxo de automação" data-t-label="fluxo.label">
+        <div class="editor__barra">
+          <span class="editor__nome" data-t="fluxo.nome">fluxo · negocio-ganho → projeto</span>
+          <span class="editor__tag" data-t="fluxo.tag">exemplo ilustrativo</span>
+          <button class="botao botao--mini botao--cheio" id="executar-fluxo" type="button">▶ Executar</button>
+        </div>
+        <div class="editor__tela" id="tela-fluxo">
+          <svg class="editor__fios" id="fios" aria-hidden="true"></svg>
+          <!-- Cada "no" tem data-id. Os fios ligam ids (definidos em js/fluxo.js). -->
+          <div class="no" data-id="gatilho" style="--x:2%;--y:12%">
+            <span class="no__tipo">Webhook</span>
+            <strong data-t="fluxo.no1">Negócio ganho no CRM</strong>
+          </div>
+          <div class="no" data-id="n8n" style="--x:35%;--y:40%">
+            <span class="no__tipo">n8n</span>
+            <strong data-t="fluxo.no2">Valida e transforma</strong>
+          </div>
+          <div class="no" data-id="api" style="--x:67%;--y:6%">
+            <span class="no__tipo" data-t="fluxo.tipo3">API REST</span>
+            <strong data-t="fluxo.no3">Cria o projeto de implantação</strong>
+          </div>
+          <div class="no" data-id="aviso" style="--x:67%;--y:70%">
+            <span class="no__tipo" data-t="fluxo.tipo4">Notificação</span>
+            <strong data-t="fluxo.no4">Avisa o time no chat</strong>
+          </div>
+          <p class="editor__dica" data-t="fluxo.dica">Arraste os blocos</p>
+        </div>
+        <!-- O "console" mostra o JSON que passa por cada etapa -->
+        <div class="editor__console" aria-live="polite">
+          <div class="console__abas">
+            <span id="etapa-atual">aguardando execução</span>
+            <span class="console__tempo" id="tempo-exec"></span>
+          </div>
+          <pre id="payload"><code></code></pre>
+        </div>
+      </figure>
+    </section>
+
+    <!-- ============ O QUE EU FAÇO ============
+         Cada frente diz de onde vem (experiência ou projeto) e leva para a prova.
+         As linhas vêm de js/dados.js. -->
+    <section class="secao" id="frentes">
+      <div class="secao__cabeca">
+        <p class="rotulo" data-t="frentes.rotulo">O que eu faço</p>
+        <h2 data-t="frentes.titulo">Da implantação aos dados do pipeline</h2>
+        <p class="secao__lead" data-t="frentes.lead">Cada frente diz de onde vem, experiência profissional ou projeto pessoal, e leva para a prova aqui mesmo no site.</p>
+      </div>
+      <ol class="frentes" id="lista-frentes">
+        <!-- preenchido pelo JavaScript -->
+      </ol>
+    </section>
+
+    <!-- ============ PROJETO 1: IA ============ -->
+    <section class="secao" id="projeto">
+      <div class="secao__cabeca">
+        <p class="rotulo"><span data-t="projeto.rotulo">Projeto com IA · n8n · API do Claude · JavaScript</span> <span class="fase" data-t="projeto.fase">fase 1 de 3 pronta</span></p>
+        <h2 data-t="projeto.titulo">Do discovery ao CRM configurado</h2>
+        <p class="secao__lead" data-t="projeto.lead">
+          Numa implantação, a reunião de discovery vira horas de configuração.
+          Estou construindo um fluxo no n8n que lê a transcrição da reunião, pede a uma IA
+          o blueprint do CRM (funis, etapas, campos e automações) e só aceita o que tiver
+          prova na própria conversa. A IA propõe, o código confere e o consultor aprova.
+        </p>
+      </div>
+
+      <!-- Diagrama de etapas clicável. Os textos estão em js/dados.js -->
+      <div class="arquitetura">
+        <ol class="trilha" id="trilha" aria-label="Etapas do fluxo" data-t-label="projeto.trilha">
+          <!-- preenchido pelo JavaScript -->
+        </ol>
+        <article class="detalhe" id="detalhe" aria-live="polite">
+          <!-- preenchido pelo JavaScript -->
+        </article>
+      </div>
+
+      <div class="grade-3">
+        <div class="cartao">
+          <h3 data-t="regras.titulo">Regras antes do prompt</h3>
+          <ul class="lista-regras" data-t="regras.lista">
+            <li>Todo item precisa citar um trecho literal da reunião. Sem trecho, não entra.</li>
+            <li>O que a reunião não deixou claro vira pergunta para o cliente, não chute.</li>
+            <li>A resposta da IA tem formato fixo, definido por um JSON Schema.</li>
+            <li>Nada é criado no CRM sem a aprovação de uma pessoa.</li>
+            <li>Só transcrições fictícias ou autorizadas. Nunca dados de cliente.</li>
+          </ul>
+        </div>
+        <div class="cartao cartao--codigo">
+          <h3 data-t="trecho.titulo">Um trecho real</h3>
+          <pre><code><span class="c" data-t="trecho.comentario">// validador.js · nó Code do n8n</span>
+<span class="k">for</span> (<span class="k">const</span> o <span class="k">of</span> origem) {
+  <span class="k">const</span> trecho = normalizar(o.trecho);
+  <span class="k">if</span> (trecho.length &lt; <span class="s">8</span>)
+    erros.push(M.trechoCurto(o.item));
+  <span class="k">else if</span> (!texto.includes(trecho))
+    erros.push(M.trechoInventado(o.item, o.trecho));
+}</code></pre>
+          <p class="nota" data-t="trecho.nota">Trecho que não está na reunião é sinal de invenção: o item é barrado e volta para a IA corrigir.</p>
+        </div>
+        <div class="cartao cartao--metricas">
+          <h3 data-t="onde.titulo">Onde está</h3>
+          <dl>
+            <div><dt data-t="onde.nos">Nós no fluxo do n8n</dt><dd>12</dd></div>
+            <div><dt data-t="onde.reunioes">Reuniões fictícias para teste</dt><dd>3</dd></div>
+            <div><dt data-t="onde.erros">Erros plantados que o validador barrou</dt><dd data-t="onde.erros.valor">4 de 4</dd></div>
+            <div><dt data-t="onde.proxima">Próxima fase</dt><dd data-t="onde.proxima.valor">API do Ploomes</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <!-- ============ DEMO AO VIVO: O VALIDADOR ============ -->
+      <div class="demo" id="demo">
+        <div class="demo__cabeca">
+          <div>
+            <p class="rotulo" data-t="demo.rotulo">Demonstração ao vivo</p>
+            <h3 data-t="demo.titulo">Tente enganar o validador</h3>
+            <p data-t="demo.texto">À esquerda, uma reunião fictícia. À direita, um blueprint de exemplo para ela.
+               O validador abaixo é o mesmo código que roda no n8n, executando agora no seu navegador.
+               Clique num item para ver a prova na conversa.</p>
+          </div>
+          <div class="chips" id="sabotagens" aria-label="Alterações no blueprint" data-t-label="demo.chips">
+            <!-- preenchido pelo JavaScript -->
+          </div>
+        </div>
+        <div class="demo__corpo">
+          <div class="transcricao" id="transcricao" tabindex="0" aria-label="Transcrição da reunião fictícia" data-t-label="demo.transcricao">
+            <!-- preenchido pelo JavaScript -->
+          </div>
+          <div class="blueprint" id="blueprint">
+            <!-- preenchido pelo JavaScript -->
+          </div>
+        </div>
+        <div class="veredito" id="veredito" aria-live="polite">
+          <!-- resultado do validador -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJETO 2: SQL ============
+         Um banco SQLite de verdade roda dentro da página (AULA 9). -->
+    <section class="secao" id="sql">
+      <div class="secao__cabeca">
+        <p class="rotulo"><span data-t="sql.rotulo">Projeto de estudo · SQL · SQLite no navegador</span> <span class="fase fase--aviso" data-t="sql.selo">dados fictícios</span></p>
+        <h2 data-t="sql.titulo">O pipeline respondido em SQL</h2>
+        <p class="secao__lead" data-t="sql.lead">
+          Uma base fictícia de CRM com 300 negócios, 6 vendedores e o histórico de cada
+          mudança de etapa. Cada consulta responde uma pergunta que um time de RevOps faz
+          toda semana. O SQL roda de verdade no seu navegador: dá para editar e rodar de novo.
+        </p>
+      </div>
+
+      <div class="console-sql" id="console-sql">
+        <div class="console-sql__barra">
+          <span class="console-sql__nome">pipeline.db</span>
+          <span class="console-sql__estado" id="sql-estado" aria-live="polite"></span>
+        </div>
+        <div class="console-sql__corpo">
+          <div class="perguntas" id="sql-perguntas" role="group" aria-label="Perguntas" data-t-label="sql.perguntas">
+            <!-- preenchido pelo JavaScript -->
+          </div>
+          <div class="console-sql__area">
+            <div class="sql-cabeca">
+              <h3 id="sql-pergunta"></h3>
+              <p class="sql-conceitos" id="sql-conceitos"></p>
+            </div>
+            <!-- Editor com cores: o <pre> colorido fica atrás e o <textarea> transparente fica na frente.
+                 As linhas não quebram: se não couberem (no celular), o editor rola para o lado. -->
+            <div class="sql-editor">
+              <div class="sql-editor__camadas">
+                <pre class="sql-editor__cor" aria-hidden="true"><code id="sql-cor"></code></pre>
+                <textarea id="sql-texto" wrap="off" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="Consulta SQL, pode editar" data-t-label="sql.editor"></textarea>
+              </div>
+            </div>
+            <div class="sql-acoes">
+              <button class="botao botao--cheio botao--mini" id="sql-rodar" type="button" data-t="sql.rodar">▶ Rodar</button>
+              <button class="botao botao--mini" id="sql-restaurar" type="button" data-t="sql.restaurar">Restaurar</button>
+              <span class="sql-dica" data-t="sql.dica"><kbd>Ctrl</kbd> + <kbd>Enter</kbd> também roda</span>
+            </div>
+            <div class="sql-resultado" id="sql-resultado">
+              <!-- tabela do resultado -->
+            </div>
+            <p class="sql-rodape" id="sql-rodape" aria-live="polite"></p>
+            <p class="sql-leitura" id="sql-leitura"></p>
+          </div>
+        </div>
+        <details class="sql-tabelas">
+          <summary data-t="sql.tabelas">Ver as tabelas da base</summary>
+          <div class="sql-tabelas__grade" id="sql-tabelas"></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ MÉTODO ============
+         A numeração aqui faz sentido porque é uma sequência real de trabalho. -->
+    <section class="secao" id="metodo">
+      <div class="secao__cabeca">
+        <p class="rotulo" data-t="metodo.rotulo">Como conduzo uma implantação</p>
+        <h2 data-t="metodo.titulo">Do discovery ao go-live, com o funil do próprio projeto</h2>
+        <p class="secao__lead" data-t="metodo.lead">Role a página e acompanhe o cartão do projeto andando pelas etapas.</p>
+      </div>
+      <div class="funil" id="funil">
+        <div class="funil__pista" id="pista">
+          <!-- colunas e o cartão, preenchidos pelo JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TRAJETÓRIA ============ -->
+    <section class="secao" id="trajetoria">
+      <div class="secao__cabeca">
+        <p class="rotulo" data-t="traj.rotulo">Trajetória</p>
+        <h2 data-t="traj.titulo">Onde aprendi o que sei</h2>
+      </div>
+      <div class="linha-tempo">
+        <article class="cargo">
+          <div class="cargo__quando" data-t="traj.c1.quando">mar/2025 · atual</div>
+          <div class="cargo__corpo">
+            <h3 data-t="traj.c1.cargo">Consultor de Implantação e Customer Success (CPQ)</h3>
+            <p class="cargo__onde" data-t="traj.c1.onde">Parceira da Ploomes</p>
+            <ul data-t="traj.c1.itens">
+              <li>Ciclo completo de implantação da solução CPQ da Ploomes, do discovery ao go-live.</li>
+              <li>Automações com n8n integrando webhooks e a API REST do Ploomes: consultas, atualizações e regras de negócio adaptadas a cada projeto.</li>
+              <li>Parametrização da plataforma com regras de negócio, fórmulas e automações.</li>
+              <li>Treinamento, onboarding e acompanhamento da adoção, com ponte entre Comercial, Produto e Desenvolvimento.</li>
+              <li>Documentação funcional e técnica para que o time consiga manter as soluções.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="cargo">
+          <div class="cargo__quando" data-t="traj.c2.quando">jan/2024 · mar/2025</div>
+          <div class="cargo__corpo">
+            <h3 data-t="traj.c2.cargo">Consultor de Implantação de CRM (autônomo)</h3>
+            <p class="cargo__onde" data-t="traj.c2.onde">Parceiro Ploomes</p>
+            <ul data-t="traj.c2.itens">
+              <li>Implantação do Ploomes CRM para empresas de diferentes segmentos, da negociação inicial à entrega.</li>
+              <li>Levantamento de requisitos e soluções sob medida para o processo comercial de cada cliente.</li>
+              <li>Documentos e propostas personalizados em HTML, CSS e JavaScript, aprendidos de forma autodidata.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="stack" id="stack">
+        <!-- grupos de ferramentas, preenchidos pelo JavaScript a partir de js/dados.js -->
+      </div>
+    </section>
+
+    <!-- ============ CONTATO ============ -->
+    <section class="secao contato" id="contato">
+      <p class="rotulo" data-t="contato.rotulo">Contato</p>
+      <h2 data-t="contato.titulo">Vamos conversar?</h2>
+      <p class="secao__lead" data-t="contato.lead">Procuro posições de RevOps, CRM Ops, implantação e automação, com mão na massa em sistemas e dados.</p>
+      <div class="contato__linhas">
+        <div class="contato__item">
+          <span class="contato__rotulo" data-t="contato.email">e-mail</span>
+          <span class="contato__valor" id="email">fe.diashb@gmail.com</span>
+          <button class="botao botao--mini" type="button" data-copiar="email" data-t="contato.copiar">Copiar</button>
+        </div>
+        <div class="contato__item">
+          <span class="contato__rotulo">linkedin</span>
+          <a class="contato__valor" href="https://www.linkedin.com/in/fernandoborba97" target="_blank" rel="noopener">linkedin.com/in/fernandoborba97</a>
+          <a class="botao botao--mini" href="https://www.linkedin.com/in/fernandoborba97" target="_blank" rel="noopener" data-t="contato.abrir">Abrir</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p data-t="rodape">Feito em HTML, CSS e JavaScript puro, sem framework, com ajuda de IA. Aperte <kbd>Ctrl</kbd> <kbd>K</kbd> para navegar.</p>
+  </footer>
+
+  <!-- ============ PALETA DE COMANDOS (Ctrl+K) ============ -->
+  <div class="paleta" id="paleta" hidden>
+    <div class="paleta__caixa" role="dialog" aria-modal="true" aria-label="Paleta de comandos" data-t-label="paleta.label">
+      <input id="paleta-busca" type="text" placeholder="Para onde você quer ir?" autocomplete="off" aria-label="Buscar comando" data-t-ph="paleta.busca" data-t-label="paleta.buscar">
+      <ul id="paleta-lista" role="listbox"></ul>
+      <p class="paleta__dica" data-t="paleta.dica"><kbd>↑</kbd><kbd>↓</kbd> navegar · <kbd>Enter</kbd> abrir · <kbd>Esc</kbd> fechar</p>
+    </div>
+  </div>
+
+  <div class="aviso" id="aviso" role="status" hidden></div>
+
+  <!--
+    AULA 2 · Os scripts ficam no fim do <body> para o HTML aparecer antes.
+    A ordem importa: primeiro os arquivos de dados, depois quem usa os dados.
+    O sql.js (o SQLite) não está aqui: ele só é baixado quando você chega
+    perto da seção de SQL (veja a AULA 9 em js/main.js).
+  -->
+  <script src="js/dados.js"></script>
+  <script src="js/discovery-dados.js"></script>
+  <script src="js/pipeline-dados.js"></script>
+  <script src="js/pipeline-base.js"></script>
+  <script src="js/validador.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/fluxo.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
