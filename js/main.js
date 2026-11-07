@@ -112,13 +112,13 @@
       const alvo = f.acao.startsWith('ir:') ? f.acao.slice(3) : 'inicio';
       return `
       <li class="frente">
-        <span class="frente__num">${doisDigitos(i)}</span>
+        
         <div class="frente__cabeca">
           <h3>${esc(f.nome)}</h3>
           <span class="selo selo--${f.selo}">${esc(selos[f.selo])}</span>
         </div>
         <p class="frente__texto">${esc(f.texto)}</p>
-        <a class="frente__prova" href="#${alvo}" data-acao="${f.acao}">${esc(f.prova)}<span aria-hidden="true">→</span></a>
+        <a class="frente__prova" href="#${alvo}" data-acao="${f.acao}">${esc(f.prova)}</a>
       </li>`;
     }).join('');
   }
@@ -159,7 +159,7 @@
       b.classList.toggle('passo--feito', j < i);
     });
     detalhe.innerHTML = `
-      <p class="rotulo">${doisDigitos(i)} · ${esc(e.onde)}</p>
+      <p class="rotulo">${esc(e.onde)}</p>
       <h3>${esc(e.titulo)}</h3>
       <p class="detalhe__resumo">${esc(e.resumo)}</p>
       <ul>${e.itens.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
@@ -243,13 +243,13 @@
       <p class="rotulo">${esc(ui.blueprintRotulo)}</p>
       ${bp.funis.map((f) => `
         <div class="bp-bloco">
-          <p class="bp-titulo">${esc(ui.funil)} · ${esc(f.nome)}</p>
+          <p class="bp-titulo">${esc(ui.funil)}: ${esc(f.nome)}</p>
           <div class="bp-etapas">${f.etapas.map((e) => item(e.nome)).join('<span class="seta" aria-hidden="true">→</span>')}</div>
         </div>`).join('')}
       <div class="bp-bloco">
         <p class="bp-titulo">${esc(ui.camposNegocio)}</p>
         <div class="bp-lista">${bp.campos.map((c) => item(c.nome,
-          ` <small>${tipo(ui.tiposCampo, c.tipo)}${c.obrigatorio_na_etapa ? ' · ' + esc(ui.obrigatorioEm) + ' ' + esc(c.obrigatorio_na_etapa) : ''}</small>`)).join('')}</div>
+          ` <small>${tipo(ui.tiposCampo, c.tipo)}${c.obrigatorio_na_etapa ? ', ' + esc(ui.obrigatorioEm) + ' ' + esc(c.obrigatorio_na_etapa) : ''}</small>`)).join('')}</div>
       </div>
       <div class="bp-bloco">
         <p class="bp-titulo">${esc(ui.automacoesIntegracoes)}</p>
@@ -450,8 +450,8 @@
       el.resultado.innerHTML = tabela(res);
       const n = res.teto ? `${TETO}+` : res.total;
       let rodape = origem === 'vivo' ? s.aoVivo(n, num(ms, 1)) : s.salvo(n);
-      if (res.cortado) rodape += ' · ' + s.cortado(LIMITE);
-      if (editada()) rodape = s.editada + ' · ' + rodape;
+      if (res.cortado) rodape += ', ' + s.cortado(LIMITE);
+      if (editada()) rodape = s.editada + ', ' + rodape;
       el.rodape.textContent = rodape;
       // A frase de leitura descreve o resultado ORIGINAL: some se a consulta foi editada
       el.leitura.hidden = editada();
@@ -568,7 +568,7 @@
     function desenharPerguntas() {
       el.perguntas.innerHTML = P.consultas.map((c, i) => `
         <button type="button" class="pergunta" data-i="${i}" aria-pressed="${i === atual}">
-          <span class="pergunta__num">${doisDigitos(i)}</span>
+          
           <span class="pergunta__texto">${esc(c.pergunta[L()])}</span>
         </button>`).join('');
     }

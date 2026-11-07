@@ -198,4 +198,17 @@
 
   // Deixa a função disponível para a paleta de comandos e para "O que eu faço"
   window.executarFluxo = executar;
+
+  // O único movimento que acontece sozinho no site: quando o editor aparece
+  // na tela pela primeira vez, o fluxo roda uma vez para mostrar o que faz.
+  // Quem pediu menos movimento no sistema não vê isso.
+  if (!semMovimento && 'IntersectionObserver' in window) {
+    const editor = document.querySelector('.editor');
+    const olho = new IntersectionObserver((entradas) => {
+      if (!entradas.some((e) => e.isIntersecting)) return;
+      olho.disconnect();
+      setTimeout(() => { if (!estado.rodando && estado.ms === null) executar(); }, 900);
+    }, { threshold: 0.6 });
+    if (editor) olho.observe(editor);
+  }
 })();
